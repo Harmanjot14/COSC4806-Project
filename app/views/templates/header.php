@@ -23,7 +23,7 @@ if (!isset($_SESSION['auth'])) {
     <body>
       <nav class="navbar">
         <div class="container">
-          <a class="navbar-brand" href="/home">Movie Project</a>
+          <a class="navbar-brand" href="/home">Entertainment Review</a>
           <ul>
             <li class="nav-item"><a href="/home">Home</a></li>
             <li class="nav-item"><a href="/logout">Logout</a></li>
