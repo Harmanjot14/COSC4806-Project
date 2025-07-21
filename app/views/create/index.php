@@ -1,39 +1,37 @@
-<?php
+<?php session_start(); ?>
 
-class Create extends Controller {
+<?php require_once 'app/views/templates/headerPublic.php'?>
 
-    public function index() {		
-      $this->view('create/index');
-    }
+  <div class="page-container">
+    <div class="signup">
+      <h1>Sign Up</h1>
+      <form method="post" action="/create/save">
+        <label for="username">Username:</label>
+        <br>
+        <input type="text" id="username" name="username" required>
+        <br><br>
+        <label for="password">Password:</label>
+        <br>
+        <input type="password" id="password" name="password" required>
+        <br><br>
+        <label for="confirm_password">Confirm Password:</label>
+        <br>
+        <input type="password" id="confirm_password" name="confirm_password" required>
+        <br><br>
+        <button type="submit" value="Sign Up">Sign Up</button>
+        <br>
+      </form>
 
-    public function save(){
-      session_start();
+      <?php if (isset($_SESSION['error'])): ?>
+        <p style="color: red;"><?php echo $_SESSION['error']; ?></p>
+        <?php unset($_SESSION['error']);?>
+      <?php endif;?>
 
-      if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $confirm_password = $_POST['confirm_password'];
+      <?php if (isset($_SESSION['success'])): ?>
+        <p style="color: green;"><?php echo $_SESSION['success']; ?></p>
+        <?php unset($_SESSION['success']);?>
+      <?php endif;?> 
+    </div>
+  </div>
 
-        //to check if password match
-        if ($password != $confirm_password){
-           $_SESSION ['error'] = "Passwords do not match";
-          header('Location: /create/index');
-          return;
-        }
-        else{
-          $user = $this->model('User');
-          $result = $user->create_user($username, $password);
-          if ($result == "Username and Password created successfully"){
-            $_SESSION['failed_attempts'] = 0;
-            $_SESSION['success'] = "Username and Password created successfully <br><br> <a href='/login'>Go to Login Page</a>";
-
-            header('Location: /create/index');
-            return;
-          }
-          else{
-            $_SESSION['error'] = $result;
-          }
-        }
-      }
-    }
-}
+    <?php require_once 'app/views/templates/footer.php'?>
