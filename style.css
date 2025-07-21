@@ -1,0 +1,154 @@
+body{
+  font-family: Arial, sans-serif;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+}
+.page-container{
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;;    
+    margin: 0;
+    padding: 0
+}
+/*for home/index.php*/
+.home{
+    margin: 0;
+    padding: 10px;
+}
+/*HomePublic*/
+.public-list{
+    list-style-type: disc;
+    margin: 0;
+    padding: 0;
+    margin-left: 20px;
+    margin-top: 10px;
+    color: #333;
+}
+.sub-list{
+    list-style-type: decimal;
+}
+
+/*Navigation bar*/
+.navbar{
+    background-color: #198754;
+    margin: 0;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid black;
+    width: 100%;
+}
+.navbar-brand{
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+}
+.navbar ul{
+  list-style: none;
+  padding: 0;
+  margin: 100;
+  display: flex;
+  gap: 15px;
+}
+.navbar li{
+  position: relative;
+}
+.navbar a{
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+}
+.navbar a:hover{
+  background-color: #f5f5f5;
+}
+
+
+/*For footer*/
+.footer{
+    margin-left: 0;
+    margin-bottom: 0;
+    background-color: #198754;
+    padding: 10px;
+    width: 100%;
+    border-top: 2px solid black;
+} 
+
+/*Login page*/
+.login-container{
+    margin: 20px;
+    padding: 0;
+
+}
+.login-container input{
+    margin-top: 3px;
+    min-width: 250px;
+    height: 25px;
+    border: 1px solid black;
+    border-radius: 3px;
+
+}
+.login-container button{
+    background-color: #007BFF;
+    color: white;
+    font-size: 16px;;
+    border: none;
+    height: 30px;
+    width: 60px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.login-container button:active{
+    background-color: #0056b3;
+}
+
+/*Sign up page*/
+.signup{
+    margin: 20px;
+    padding: 0;
+}
+.signup input{
+    margin-top: 3px;
+    margin-bottom: 3px;
+    min-width: 250px;
+    height: 25px;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+.signup button{
+    background-color: #218838;
+    color: white;
+    font-size: 16px;;
+    border: none;
+    height: 30px;
+    width: 80px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.signup button:active{
+    background-color: #1e7e34;
+}
+
+
+/*for breadcrumb*/
+.breadcrumb{
+    margin-left: 0;
+}
+.breadcrumb-item{
+    display: inline-block;
+    font-size: 18px;
+    color: black
+}
+.breadcrumb-item + .breadcrumb-item::before{
+    content: "/";
+    padding: 0 8px;
+    color: #6c757d;
+}
+
+/*Movie search*/
+.movie{
+    margin: 20px;
+    padding: 0;
+}
+
