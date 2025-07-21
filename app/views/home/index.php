@@ -5,14 +5,15 @@
             <div class="page-header" id="banner">
                 <div class="row">
                     <div>
-                        <h1>Welcome!</h1>
-                        <br><br>
+                        <br>
+                        <h1 style="font-size: 24px;">Welcome!</h1>
+                        <br>
                         <form method="Get" action="/omdb/search">
                             <input type="text" name="movie" placeholder="Search for a movie">
                             <input type="submit" value="Search">
                             <br><br>
                         </form>
-                        <p class="lead"><strong><?= date("F jS, Y"); ?></strong> </p>                      
+                        <p><strong><?= date("F jS, Y"); ?></strong> </p>                      
                     </div>
                 </div>
             </div>
