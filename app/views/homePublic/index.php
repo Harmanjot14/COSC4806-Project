@@ -7,7 +7,7 @@
                 <div>
                     <h1>Welcome!</h1>
                     <p class="lead">This is a movie review website</p>
-                    <form method="Get" action="/movie/search">
+                    <form method="Get" action="/omdb/search">
                         <input type="text" name="movie" placeholder="Search for a movie">
                         <br><br>
                         <input type="submit" value="Search">
