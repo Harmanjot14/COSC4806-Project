@@ -145,6 +145,25 @@ body{
     padding: 0 8px;
     color: #6c757d;
 }
+/*form for homePublic*/
+.search-input{
+    margin-top: 3px;
+    margin-bottom: 3px;
+    min-width: 250px;
+    height: 25px;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+.search-button{
+    background-color: blue;
+    color: white;
+    font-size: 16px;;
+    border: none;
+    height: 30px;
+    width: 80px;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
 /*Movie search*/
 .movie{
