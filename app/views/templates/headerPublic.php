@@ -15,8 +15,7 @@ if (isset($_SESSION['auth']) == 1) {
     <meta name="mobile-web-app-capable" content="yes">
     <!-- Added CSS style -->
     <link rel="stylesheet" href="/style.css">
-    <!--Added Bootsrap-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
 </head>
 <body>
     <nav class="navbar">
@@ -25,6 +24,7 @@ if (isset($_SESSION['auth']) == 1) {
           <ul>
             <li class="nav-item"><a href="/home">Home</a></li>
             <li class="nav-item"><a href="/login">Login</a></li>
+            <li class="nav-item"><a href="/create">SignUp</a></li>
           </ul>
         </div>
       </nav>
