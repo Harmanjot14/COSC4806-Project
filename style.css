@@ -186,6 +186,12 @@ body{
 .rating-body{
     border-top: 3px solid green;
 }
+
+/*All Ratings*/
+.all-ratings{
+    margin: 20px;
+    padding: 0;
+}
     
 
 
