@@ -29,6 +29,11 @@ if (!isset($_SESSION['auth'])) {
           <ul>
             <li class="nav-item"><a href="/home">Home</a></li>
             <li class="nav-item"><a href="/myRatings">My Ratings</a></li>
+            <!-- Adding all ratings for admin -->
+            <?php if ($_SESSION['username'] == 'Admin') : ?>
+              <li class="css-nav-item"><a href="/allRatings">All Ratings</a></li>
+            <?php endif;?>
+            
             <li class="nav-item"><a href="/logout">Logout</a></li>
           </ul>
         </div>
