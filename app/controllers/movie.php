@@ -12,10 +12,20 @@ class Movie extends Controller{
         $user_id = $_SESSION['user_id'];
         
         $movieRate = $this->model('MovieRatings');
-        $movieRate->rate_movie($movie_title, $user_rating, $user_id);
+        $done_rated = $movieRate->already_rated($movie_title, $user_id);
+        if($done_rated !== null){
+            $_SESSION['error'] = "You have already rated this movie!";
+            $_SESSION['rating_done'] = $done_rated;
+        }
+        else{
+            $movieRate->rate_movie($movie_title, $user_rating, $user_id);
+            $_SESSION['success'] = "Rating submitted successfully!";
+            $_SESSION['rating_done'] = $user_rating;
+        }
         
-        header("Location: /movie/index");
-        exit;
+        $movie = $_SESSION['last_movie'] ?? null;
+        $this->view('movie/index', ['movie' => $movie]);
+        
     }
 
   
