@@ -21,9 +21,9 @@
     <?php if(isset($movie) && $movie['Resposnive'] !== 'False'): ?>
     <!--Movie Information-->
     <div class="page-header" id="banner">
-        <div class="col-md-6">
-          <div class="row">
-            <div class="card mb-4">
+      <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
               <div class="card-header">Movie Information</div>
               <div class="card-body">
                 
@@ -50,14 +50,57 @@
               </div>
             </div>
           </div>
-        </div>    
+
+          <!-- Rating Form -->
+          <div class="col-md-6 mb-4">
+            <div class="card h-30">
+              <div class="card-header">Rate this Movie</div>
+              <div class="card-body">
+                <form method="POST" action="/movie/rate">
+                  <input type="hidden" name="movie_title" value="<?= $movie['Title'] ?>">
+                  <p>Please Rate: </p>
+                  <div class="d-flex gap-2 mb-3">
+                    <?php for ($i = 1; $i <= 5; $i++): ?>
+                      <i class="bi bi-star star-icon" data-rating="<?= $i ?>" style="font-size: 30px; cursor: pointer;"></i>
+                    <?php endfor;?>  
+                  </div>
+                  <input type="hidden" name="user_rating" value="">
+                  <button type="submit" class="btn btn-primary">Submit Rating</button>
+                </form> 
+              </div>
+            </div>
+          </div>
+
+          
+      </div>    
     </div>
     <?php elseif(isset($error)): ?>
       <div class="alert alert-warning text-center">
         <?= $error ?>
       </div>
-  <?php endif; ?>
+    <?php endif; ?>
+
     
+    <!-- JavaScript for star rating -->
+    <script>
+      const stars = document.querySelectorAll('.star-icon');
+      const ratingInput = document.querySelector('input[name="user_rating"]');
+
+      stars.forEach((star, index) => {
+        star.addEventListener('click', () => {
+          stars.forEach(s => {
+            s.classList.remove('bi-star-fill');
+            s.classList.add('bi-star');
+          });
+          for (let i = 0; i <= index; i++){
+            stars[i].classList.remove('bi-star');
+            stars[i].classList.add('bi-star-fill');
+            stars[i].style.color = 'gold';
+          }
+          ratingInput.value = index + 1;
+        });
+      });
+    </script> 
   </div>
 </div>
 
