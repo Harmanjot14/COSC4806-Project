@@ -171,3 +171,21 @@ body{
     padding: 0;
 }
 
+/*My ratings*/
+.my-ratings{
+    margin: 20px;
+    padding: 0;
+}
+.color-stripes tbody tr:nth-child(odd){
+    background-color: lightgreen;
+}  
+.rating-card{
+    border: 3px solid green;
+    border-radius: 5px;
+}
+.rating-body{
+    border-top: 3px solid green;
+}
+    
+
+
