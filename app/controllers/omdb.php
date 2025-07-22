@@ -5,6 +5,8 @@ class Omdb extends Controller{
         $this->view('movie/index');
     }
     public function search(){
+        
+        unset($_SESSION['success']);
         $movie_title = $_GET['movie'] ?? '';
         
         if(empty($movie_title)){
@@ -18,7 +20,7 @@ class Omdb extends Controller{
           $this->view('movie/index', ['error' => 'Movie not found.']);
           return;
         }
-        
+        $_SESSION['last_movie'] = $movie;        
         $this->view('movie/index',['movie' => $movie]);
           
     }
