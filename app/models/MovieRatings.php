@@ -21,4 +21,12 @@ Class MovieRatings{
       return $result['user_rating'] ?? null;
    }
 
+   //to get rating by user
+   public function get_rating_by_user($user_id){
+      $db = db_connect();
+      $statement = $db->prepare("SELECT * FROM ratings WHERE user_id = :user_id;");
+      $statement->execute(['user_id' => $user_id]);
+      $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+      return $result;
+   }
 }
