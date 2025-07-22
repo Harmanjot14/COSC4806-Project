@@ -29,4 +29,13 @@ Class MovieRatings{
       $result = $statement->fetchAll(PDO::FETCH_ASSOC);
       return $result;
    }
+
+   //to get all ratings with username
+   public function get_all_ratings_with_username(){
+     $db = db_connect();
+     $statement = $db->prepare("SELECT ratings.*, users.username FROM ratings JOIN users ON ratings.user_id = users.id;");
+     $statement->execute();
+     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+     return $result;
+   }
 }
