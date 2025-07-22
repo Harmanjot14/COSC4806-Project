@@ -20,7 +20,17 @@ class Omdb extends Controller{
           $this->view('movie/index', ['error' => 'Movie not found.']);
           return;
         }
-        $_SESSION['last_movie'] = $movie;        
+        $_SESSION['last_movie'] = $movie;  
+        $movieRate = $this->model('MovieRatings');
+        $done_rated = $movieRate->already_rated($movie['Title'], $_SESSION['user_id']);
+        if($done_rated !== null){
+            $_SESSION['error'] = "You have already rated this movie!";
+            $_SESSION['rating_done'] = $done_rated;
+        }
+        else{
+            unset($_SESSION['error'], $_SESSION['rating_done']);
+        }
+            
         $this->view('movie/index',['movie' => $movie]);
           
     }
