@@ -18,7 +18,7 @@
       <br><br>
     </form>
    
-    <?php if(isset($movie) && $movie['Resposnive'] !== 'False'): ?>
+    <?php if(isset($movie) && $movie['Response'] !== 'False'): ?>
     <!--Movie Information-->
     <div class="page-header" id="banner">
       <div class="row">
@@ -53,20 +53,49 @@
 
           <!-- Rating Form -->
           <div class="col-md-6 mb-4">
-            <div class="card h-30">
+            <div class="card h-40">
               <div class="card-header">Rate this Movie</div>
               <div class="card-body">
-                <form method="POST" action="/movie/rate">
-                  <input type="hidden" name="movie_title" value="<?= $movie['Title'] ?>">
-                  <p>Please Rate: </p>
+                <?php if(isset($_SESSION['success'])): ?>
+                  <div class="alert alert-success text-center">
+                    <?= $_SESSION['success'] ?>
+                    <?php unset($_SESSION['success']); ?>
+                  </div>
+                <?php endif;?>
+                <!-- Display error message if user already rated the movie -->
+                <?php if(isset($_SESSION['rating_done'])): ?>
+                  <div class="alert alert-warning text-center">
+                    <?= $_SESSION['error'] ?>
+                    <?php unset($_SESSION['error']); ?>
+                  </div>
+  
                   <div class="d-flex gap-2 mb-3">
                     <?php for ($i = 1; $i <= 5; $i++): ?>
-                      <i class="bi bi-star star-icon" data-rating="<?= $i ?>" style="font-size: 30px; cursor: pointer;"></i>
-                    <?php endfor;?>  
+                      <?php $class = ($i <= $_SESSION['rating_done']) ? 'bi-star-fill text-warning' : 'bi-star';?>
+                      <i class="bi <?= $class ?>" style="font-size: 30px; cursor: default;"></i>
+                    <?php endfor; ?>
+
                   </div>
-                  <input type="hidden" name="user_rating" value="">
-                  <button type="submit" class="btn btn-primary">Submit Rating</button>
+                  <?php unset($_SESSION['rating_done']);?>
+
+                <!-- for rating the movie -->                          
+                <?php else: ?>  
+                  <form method="POST" action="/movie/rate">
+                    <input type="hidden" name="movie_title" value="<?= $movie['Title'] ?>">
+                    <p>Please Rate: </p>
+                    <div class="d-flex gap-2 mb-3">
+                      <?php for ($i = 1; $i <= 5; $i++): ?>
+                        <i class="bi bi-star star-icon" data-rating="<?= $i ?>" style="font-size: 30px; cursor: pointer;"></i>
+                      <?php endfor;?>  
+                    </div>
+                    
+                    <input type="hidden" name="user_rating" value="">
+                    <button type="submit" class="btn btn-primary">Submit Rating</button>
+                    <br><br>
                 </form> 
+  
+                <?php endif; ?>
+                
               </div>
             </div>
           </div>
