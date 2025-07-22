@@ -22,6 +22,7 @@
     <!--Movie Information-->
     <div class="page-header" id="banner">
       <div class="row">
+        <!--Movie Information Card-->
         <div class="col-md-6 mb-4">
             <div class="card h-100">
               <div class="card-header">Movie Information</div>
@@ -95,12 +96,24 @@
                 </form> 
   
                 <?php endif; ?>
-                
               </div>
             </div>
-          </div>
 
-          
+            <!--Gemini Review-->
+            <div class="card mt-4">
+              <div class="card-header">Gemini Review</div>
+              <div class="card-body">
+                <button id="review-button" class="btn btn-primary">Get Gemini Review</button>
+                <div id="review-content" class="mt-3">
+                  <?php if(isset($review)): ?>
+                    <p><?= $review ?></p>
+                  <?php endif;?>
+                </div>
+              </div>
+            </div>
+         
+            
+        </div>    
       </div>    
     </div>
     <?php elseif(isset($error)): ?>
@@ -130,8 +143,29 @@
         });
       });
     </script> 
+    
+    <!-- JavaScript for gemini review -->
+    <script>
+      const reviewButton = document.getElementById('review-button');
+      const reviewContent = document.getElementById('review-content');
+      const movieTitle = <?= json_encode($movie['Title'] ?? '') ?>;
+      
+
+      reviewButton.addEventListener('click', () => {
+        fetch('/gemini/review', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ movie_title: movieTitle })
+        })
+        .then(response => response.json())
+        .then(data => {
+          reviewContent.textContent = data.review || 'Gemini could not provide a review';
+        });
+      });
+    </script>
+    
   </div>
 </div>
-
-
 <?php require_once 'app/views/templates/footer.php'?>
